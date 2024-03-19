@@ -1,0 +1,40 @@
+version: "2.1"
+
+networks:
+  frontend:
+    name: gateway
+    external: true
+  backend:
+
+services:
+  freshrss_app:
+    image: "lscr.io/linuxserver/freshrss:latest"
+    container_name: "freshrss"
+    networks:
+      - frontend
+      - backend
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - "/etc/freshrss/data:/config"
+    restart: "unless-stopped"
+#    depends_on:
+#      - freshrss_db
+
+#  freshrss_db:
+#    container_name: "freshrss_db"
+#    image: "jc21/mariadb-aria:latest"
+#    environment:
+#      - "MYSQL_DATABASE=freshrss"
+#      - "MYSQL_USER=rss"
+#      - "MYSQL_PASSWORD=rss"
+#      - "MYSQL_ROOT_PASSWORD=rss"
+#    restart: "unless-stopped"
+#    volumes:
+#      - "/etc/freshrss/db:/var/lib/mysql"
+#    networks:
+#      - backend      
+
+    
