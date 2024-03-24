@@ -18,7 +18,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - "/etc/freshrss/data:/config"
+      - "/mnt/docker/freshrss/data:/config"
     restart: "unless-stopped"
 #    depends_on:
 #      - freshrss_db
