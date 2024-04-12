@@ -20,21 +20,11 @@ services:
     volumes:
       - "/mnt/docker/freshrss/data:/config"
     restart: "unless-stopped"
-#    depends_on:
-#      - freshrss_db
-
-#  freshrss_db:
-#    container_name: "freshrss_db"
-#    image: "jc21/mariadb-aria:latest"
-#    environment:
-#      - "MYSQL_DATABASE=freshrss"
-#      - "MYSQL_USER=rss"
-#      - "MYSQL_PASSWORD=rss"
-#      - "MYSQL_ROOT_PASSWORD=rss"
-#    restart: "unless-stopped"
-#    volumes:
-#      - "/etc/freshrss/db:/var/lib/mysql"
-#    networks:
-#      - backend      
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://172.16.20.11:7514"
+        syslog-format: "rfc3164"
+        tag: "freshrss"  
 
     
